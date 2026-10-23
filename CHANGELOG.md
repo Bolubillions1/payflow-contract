@@ -63,6 +63,14 @@ change the contract interface.
   payflow-backend, payflow-frontend and payflow-docs need the new
   `subscription_upgraded` event and the new error codes. Closes #94.
 
+- **subscription:** `estimated_end(mandate_id)` returns the projected final
+  charge timestamp for capped mandates using the current `next_charge` schedule,
+  including drift after late charges. It returns `None` for open-ended mandates
+  and the actual final charge timestamp after completion. This read interface
+  addition needs handling in payflow-backend, payflow-frontend and payflow-docs;
+  payflow-docs also needs a message for the new `ScheduleOverflow` error. Closes
+  #105.
+
 ### Changed
 
 - **contracts:** document every public item across all crates and enforce
