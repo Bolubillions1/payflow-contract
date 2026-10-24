@@ -1,4 +1,5 @@
 #![cfg(test)]
+extern crate std;
 
 use super::*;
 use soroban_sdk::xdr::{ContractEventBody, ScSymbol, ScVal};
@@ -82,7 +83,15 @@ fn create_plan_authorizes_exact_merchant_tree() {
         invoke: &MockAuthInvoke {
             contract: &client.address,
             fn_name: "create_plan",
-            args: (&merchant, &token, &1_000_i128, &604_800_u64, &name, &desc, &0_u32)
+            args: (
+                &merchant,
+                &token,
+                &1_000_i128,
+                &604_800_u64,
+                &name,
+                &desc,
+                &0_u32,
+            )
                 .into_val(&env),
             sub_invokes: &[],
         },
@@ -96,7 +105,15 @@ fn create_plan_authorizes_exact_merchant_tree() {
                 function: soroban_sdk::testutils::AuthorizedFunction::Contract((
                     client.address.clone(),
                     soroban_sdk::Symbol::new(&env, "create_plan"),
-                    (&merchant, &token, &1_000_i128, &604_800_u64, &name, &desc, &0_u32)
+                    (
+                        &merchant,
+                        &token,
+                        &1_000_i128,
+                        &604_800_u64,
+                        &name,
+                        &desc,
+                        &0_u32
+                    )
                         .into_val(&env),
                 )),
                 sub_invocations: std::vec![],
@@ -122,7 +139,15 @@ fn create_plan_rejects_a_wrong_signer() {
         invoke: &MockAuthInvoke {
             contract: &client.address,
             fn_name: "create_plan",
-            args: (&merchant, &token, &1_000_i128, &604_800_u64, &name, &desc, &0_u32)
+            args: (
+                &merchant,
+                &token,
+                &1_000_i128,
+                &604_800_u64,
+                &name,
+                &desc,
+                &0_u32,
+            )
                 .into_val(&env),
             sub_invokes: &[],
         },

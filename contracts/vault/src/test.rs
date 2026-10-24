@@ -7,6 +7,7 @@ use soroban_sdk::{
     token::{StellarAssetClient, TokenClient},
     Address, Env, IntoVal, String,
 };
+use soroban_sdk::{testutils::AuthorizedFunction, Symbol};
 
 struct Harness<'a> {
     env: Env,
