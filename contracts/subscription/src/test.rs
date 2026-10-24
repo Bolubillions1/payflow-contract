@@ -194,9 +194,9 @@ fn subscribe_auth_tree_is_exactly_the_subscriber() {
     }]);
 
     let id = w.sub.subscribe(&user, &plan_id, &0);
-    assert_eq!(w.sub.get_mandate(&id).subscriber, user);
-
+    // env.auths() reports the last invocation only, so read it before get_mandate.
     let auths = w.env.auths();
+    assert_eq!(w.sub.get_mandate(&id).subscriber, user);
     assert_eq!(auths.len(), 1);
     assert_eq!(auths[0].0, user);
 }
